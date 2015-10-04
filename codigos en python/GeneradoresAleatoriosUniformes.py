@@ -19,6 +19,7 @@ class GeneradoresAleatorios:
            #print ui           
            v.append(ui)
            cant-=1
+           
        return v
 
            
@@ -75,7 +76,10 @@ class GeneradoresAleatorios:
            #print ui
            v.append(ui)            
            cant-=1
-       return v
+       if len(v)==1:     
+          return v[0]
+       else:
+           return v
 
     def generar_randu(self,cant,semilla): 
        m=2147483648
