@@ -44,8 +44,7 @@ class Contrastes:
         return cant
         
     def rachas(self):
-        x=gau.GeneradoresAleatorios().generar_wichmannHill(10,23)
-        
+        x=gau.GeneradoresAleatorios().generar_wichmannHill(100,23)        
         media,desv,test=0,0,0
         r,n,i=[],0,0       
         while i< (len(x)-1):           
@@ -72,11 +71,40 @@ class Contrastes:
             i+=1
             
         media,desv=(2*n-1)/3.,(16*n-29)/90.
-        test=st.norm.pdf(x,loc=media,scale=desv)
-        print n,r
+        test=st.norm(media,desv)
         
-        print test,media,desv
-        
+        print test.pdf(r)
+    def rachasConMediana(self) :
+        x=gau.GeneradoresAleatorios().generar_wichmannHill(100,23)
+        mediana=np.median(np.sort(x))        
+        media,desv,test=0,0,0
+        r,n,i=[],0,0       
+        while i< (len(x)-1):           
+           if x[i]>mediana:
+               r.append(1)
+            #   des+=1
+           else:               
+               r.append(0)               
+            #   asc+=1
+           i+=1
+        i=0  
+        l=0
+                       
+        while i< len(r):
+            if i==0:
+                l=r[i]
+            else:
+                if r[i]!=l:
+                    n+=1
+                if (i==(len(r)-1)):
+                  n+=1
+            l=r[i]
+                
+            i+=1
+            
+        media,desv=(2+n)/2.,n/2.
+        test=st.norm(media,desv)
+         
       
 a=Contrastes()
-a.rachas()
+a.rachasConMediana()
