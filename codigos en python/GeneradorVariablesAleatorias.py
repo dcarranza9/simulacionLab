@@ -6,10 +6,13 @@ Created on Mon Sep 14 08:32:22 2015
 """
 import GeneradoresAleatoriosUniformes as ga
 import numpy as np
+import scipy.special as sp
+import matplotlib.pyplot as plt
 
 class MetodoInversion:
     #Se quiere simular el numero de puntos optenidos al lanzar dos dados 
     def lanzamientoDosDados(self):
+        plt.step
         #funcion de distribución cuando la suma de los puntos es 2,3,....,12
         fd=[1/36.,2/36.,3/36.,4/36.,5/36.,6/36.,5/36.,4/36.,3/36.,2/36.,1/36.]
         #funcion de distribucion acumulada        
@@ -39,6 +42,15 @@ class MetodoInversion:
             print 'El resultado es: ',11
         else:
             print 'El resultado es: ',12
-
+            
+    def normal(self,media,desviacion):
+        p= ga.GeneradoresAleatorios().generar_wichmannHill(1,77)
+        x= 2*p-1        
+        erfinv=sp.erfinv(x)
+        normInv= media+ desviacion*np.sqrt(2)*(erfinv)
+        print normInv
+        return normInv
+        
+             
 mi=MetodoInversion()
-mi.lanzamientoDosDados()
+mi.normal(5,0.5)
