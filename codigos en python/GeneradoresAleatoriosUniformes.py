@@ -7,16 +7,21 @@ Created on Wed Sep 09 11:29:47 2015
 
 class GeneradoresAleatorios:
     def generar_Conguencial(self,cant,semilla):
+       #x0=semilla
+       #m=2305843009213693951
+       #a=5
+       #b=1
+       longitud=0
        x0=semilla
-       m=2305843009213693951
-       a=5
-       b=1
        xi=x0
+       m=171
+       a=13
+       b=7
        v=[]
        while cant>0: 
            xi=float((a*xi+b)%m)
            ui=xi/m
-           #print ui           
+           print xi," ",ui           
            v.append(ui)
            cant-=1
            
@@ -93,3 +98,6 @@ class GeneradoresAleatorios:
            v.append(ui)            
            cant-=1
        return v
+
+g=GeneradoresAleatorios() 
+g.generar_Conguencial(100,25)
